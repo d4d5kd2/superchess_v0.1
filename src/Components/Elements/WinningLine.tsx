@@ -38,9 +38,10 @@ interface WinningLineProps {
     winData: Array<{ line: number; symbol: string; n: number; winAmount: number }>;
     reelWidth: number;
     reelHeight: number;
+    lineBet: number;
   }
 
-  export const WinningLine: React.FC<WinningLineProps> = ({ winData, reelWidth, reelHeight }) => {
+  export const WinningLine: React.FC<WinningLineProps> = ({ winData, reelWidth, reelHeight, lineBet }) => {
     const [visibleWinData, setVisibleWinData] = useState(winData);
 
     useEffect(() => {
@@ -79,17 +80,22 @@ interface WinningLineProps {
   
     return (
       <Container>
-        {visibleWinData.map((win) => {
-        const coordinates = calculateLineCoordinates(win.line + 1, win.n);
-        return (
-          <Graphics
-            key={win.line}
-            draw={(graphics) => {
-              renderLine(graphics, coordinates, colors[win.line - 1], reelWidth, reelHeight);
-            }}
-          />
-        );
+      {visibleWinData.map((win) => {
+        // Check if lineBet is greater than or equal to the "line" from the response
+        if (lineBet >= win.line) {
+          const coordinates = calculateLineCoordinates(win.line + 1, win.n);
+          return (
+            <Graphics
+              key={win.line}
+              draw={(graphics) => {
+                renderLine(graphics, coordinates, colors[win.line - 1], reelWidth, reelHeight);
+              }}
+            />
+          );
+        } else {
+          return null;
+        }
       })}
-      </Container>
+    </Container>
     );
   };

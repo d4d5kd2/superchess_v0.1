@@ -27,6 +27,7 @@ import startImage from "../assets/images/PNG/backgroundBeige.png";
 
 import { ChessboardSquare } from "./Elements/ChessboardSquare";
 import { Chessboard } from "./Elements/Chessboard";
+import { WinAmountCounter } from "./Elements/WinDisplay";
 
 
 interface ChessboardGameComponentProps {
@@ -51,6 +52,7 @@ export const ChessboardGameComponent: React.FC<ChessboardGameComponentProps> = (
                         <Chessboard width={800} height={800} onGridItemClick={onGridItemClick} x={-200} y={0} />
      
                     <Sprite texture={Texture.from(logo)} x={360+ logoWidth *2} y={100} width={logoWidth} height={logoHeight}/>
+                    {/* <WinAmountCounter x={width/2} y={height/2} width={width} height={height} /> */}
             </Stage>
             </>
         )

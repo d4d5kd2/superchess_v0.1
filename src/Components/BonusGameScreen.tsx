@@ -30,15 +30,14 @@ export const FreeGameComponent: React.FC<FreeGameComponentProps> = ({width, heig
     
                 {/* <Sprite texture={Texture.from(wildBonus)} x={0} y={0} width={width} height={height}/> */}
     
-                <Container x={width/2 - containerWidth / 2.11} y={height/2} >
-
+               
                     <Sprite texture={Texture.from(logo)} x={0 + logoWidth/2} y={0 - logoHeight} width={logoWidth} height={logoHeight}/>
 
                     <FreeSpinsMachine 
-                        x={0}
-                        y={0}
-                        width={containerWidth}
-                        height={containerHeight}
+                        x={width / 2 - containerWidth / 3}
+                        y={height / 2}
+                        width={width}
+                        height={height}
                         balance={100}
                         setBalance={() => {}}
                         playerBet={1}
@@ -50,7 +49,7 @@ export const FreeGameComponent: React.FC<FreeGameComponentProps> = ({width, heig
                     />
                     {/* <Machine x={width/2 - containerHeight * 1.3 } y={height} width={containerWidth} height={containerHeight} balance={}/> */}
 
-                </Container>
+                
             </Stage>
             </>
         )

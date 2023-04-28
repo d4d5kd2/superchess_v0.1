@@ -157,7 +157,7 @@ export const FreeSpinsMachine: React.FC<FreeSpinMachineProps> = ({ width, height
             
             />
             ))}
-            <WinningLine winData={wins} reelWidth={reelWidth} reelHeight={reelHeight} />
+            <WinningLine winData={wins} reelWidth={reelWidth} reelHeight={reelHeight} lineBet={linesBet} />
 
       </>
       <Sprite texture={Texture.from(TOP_BAR)} x={-485} y={-400} width={width} height={120} alpha={100} />
@@ -190,7 +190,7 @@ export const FreeSpinsMachine: React.FC<FreeSpinMachineProps> = ({ width, height
         />
 }
       
-      <WinAmountCounter x={x + reelWidth * 4} y={y / 2} winData={wins} duration={1000} width={width /15} height={height/30} bet={playerBet}  />
+      <WinAmountCounter x={x + reelWidth * 4} y={y / 2} winData={wins} duration={1000} width={width /15} height={height/30} bet={playerBet} linesBet={linesBet}/>
 
     </Container>
   );

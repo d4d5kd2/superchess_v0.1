@@ -44,6 +44,7 @@ interface WinAmountCounterProps {
     width: number;
     height: number;
     bet: number;
+    linesBet: number;
   }
 const THRESHOLD_1 = 1;
 const THRESHOLD_2 = 5;
@@ -59,6 +60,7 @@ export const WinAmountCounter: React.FC<WinAmountCounterProps> = ({
   width,
   height,
   bet,
+  linesBet,
 }) => {
   const [displayValue, setDisplayValue] = useState(0);
   const [targetValue, setTargetValue] = useState(0);
@@ -66,17 +68,17 @@ export const WinAmountCounter: React.FC<WinAmountCounterProps> = ({
   const hugeWinRef = useRef<PIXI.Sprite>(null);
   const megaWinRef = useRef<PIXI.Sprite>(null);
 
-  useEffect(() => {
-    // Animate the sprites' scale using GSAP
-    if (bigWinRef.current && displayValue >= THRESHOLD_1 && displayValue < THRESHOLD_2) {
-      const scale = Math.min((displayValue - THRESHOLD_1) / (THRESHOLD_2 - THRESHOLD_1), 1) * 0.5;
-      gsap.to(bigWinRef.current.scale, { x: scale, y: scale, duration: 0.5 });
-    }
+  // useEffect(() => {
+  //   // Animate the sprites' scale using GSAP
+  //   if (bigWinRef.current && displayValue >= THRESHOLD_1 && displayValue < THRESHOLD_2) {
+  //     const scale = Math.min((displayValue - THRESHOLD_1) / (THRESHOLD_2 - THRESHOLD_1), 1) * 0.5;
+  //     gsap.to(bigWinRef.current.scale, { x: scale, y: scale, duration: 0.5 });
+  //   }
 
-    if (hugeWinRef.current && displayValue >= THRESHOLD_2) {
-      gsap.to(hugeWinRef.current.scale, { x: 0.5, y: 0.5, duration: 0.5 });
-    }
-  }, [displayValue]);
+  //   if (hugeWinRef.current && displayValue >= THRESHOLD_2) {
+  //     gsap.to(hugeWinRef.current.scale, { x: 0.5, y: 0.5, duration: 0.5 });
+  //   }
+  // }, [displayValue]);
 
   const renderNumberSprites = (number: number) => {
     const digits = number.toString().split('').map(Number);
@@ -84,9 +86,9 @@ export const WinAmountCounter: React.FC<WinAmountCounterProps> = ({
       <Sprite
         key={index}
         texture={numberTextures[digit]}
-        x={x - x / 8 + index * width / digits.length}
+        x={x - x / 8 + index * 50 / digits.length}
         y={y - y / 1.4}
-        width={width / digits.length - 10}
+        width={20}
         height={height}
       />
     ));
@@ -97,7 +99,12 @@ export const WinAmountCounter: React.FC<WinAmountCounterProps> = ({
 
 
   useEffect(() => {
-    const totalWin = winData.reduce((total, win) => total + win.winAmount, 0);
+     const totalWin = winData.reduce((total: number, win: { line: number; symbol: string; n: number; winAmount: number }) => {
+      if (linesBet >= win.line) {
+        return total + win.winAmount;
+      }
+      return total;
+    }, 0);
     setTargetValue(totalWin * bet);
 
     const startTimestamp = performance.now();
@@ -126,15 +133,7 @@ export const WinAmountCounter: React.FC<WinAmountCounterProps> = ({
   return (
     <>
     <Sprite texture={Texture.from(WIN_DISPLAY)} x={x - x/5} y={y - y} width={width *2} height={height *4}/>
-    {/* <Text
-      x={x - x/5}
-      y={y - y/1.4}
-      text={displayValue > 0 ? "    " + displayValue.toString(): ""}
-      style={textStyle}
-      width={width}
-      height={height}
-
-      /> */}
+ 
       <Container>{displayValue > 0 && renderNumberSprites(displayValue)}</Container>
    
     </>

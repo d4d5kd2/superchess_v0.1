@@ -26,7 +26,7 @@ interface MainGameComponentProps {
 export const MainGameComponent: React.FC<MainGameComponentProps> = ({ width, height, dimensions }) => {
     const [playerBalance, setPlayerBalance] = useState<number>(10000);
     const [playerBet, setPlayerBet] = useState<number>(1);
-    const [linesBet, setLinesBet] = useState<number>(20);
+    const [linesBet, setLinesBet] = useState<number>(1);
     const { updateActiveComponentIndex } = useContext(ActiveComponentIndexContext);
 
     const logoWidth = height * 0.3
@@ -41,8 +41,8 @@ export const MainGameComponent: React.FC<MainGameComponentProps> = ({ width, hei
     };
 
     const switchToChessGame = () => {
-
-        updateActiveComponentIndex(3)
+        
+        // updateActiveComponentIndex(3)
     }
 
 

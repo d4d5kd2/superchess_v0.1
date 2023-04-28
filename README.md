@@ -10,6 +10,10 @@ The game will feature two bonus modes:
 
 - Chessboard Bonus Game: When the player lands 3 or more scatter symbols, they trigger the bonus game. In the bonus game, the player is presented with a chessboard and must select squares to reveal hidden prizes - if a player doesn't make a selection quickly a field is randomly selected for him. The game ends when the player selects a square that reveals the "RED FLAG" symbol or the "RED FLAG symbol" is revealed automatically. The sense of urgency is emphasized by a sound of a chess clock ticking, the bonus feature should emulate the feeling of playing a high stakes professional blitz chess game - the selections made being the "moves", the sound design should include crowd murmurs when low prizes are revealed and cheers when a big win is revealed.
 
+## Stack
+
+This project is using TypeScript, React, PixiJS @pixi/react library, gsap and RxJS
+
 ## Installation
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

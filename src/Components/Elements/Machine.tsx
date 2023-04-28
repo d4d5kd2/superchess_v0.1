@@ -86,6 +86,7 @@ export const Machine: React.FC<MachineProps> = ({ width, height, x, y, balance, 
 
 
   const fetchResults = async () => {
+    console.log(linesBet)
     const response = await fetch('http://superchess-server.herokuapp.com/spin');
 
     // const response = await fetch('http://localhost:8080/spin');
@@ -99,9 +100,19 @@ export const Machine: React.FC<MachineProps> = ({ width, height, x, y, balance, 
     }));
 
     const winsData = data[5];
-    const totalWin = winsData.reduce((total: number, win: { line: number; symbol: string; n: number; winAmount: number }) => total + win.winAmount, 0);
-    setBalance(balance + (totalWin*playerBet) - playerBet * linesBet);
-
+    const totalWin = winsData.reduce((total: number, win: { line: number; symbol: string; n: number; winAmount: number }) => {
+      if (linesBet >= win.line) {
+        return total + win.winAmount;
+      }
+      return total;
+    }, 0);
+  
+    if (totalWin > 0) {
+      setBalance(balance + (totalWin*playerBet) - playerBet * linesBet);
+    } else {
+      setBalance(balance - playerBet * linesBet);
+    }
+    
     const bonusGameTriggered = data[6]?.bonusGameTriggered || false;
     const freeGames3Triggered = data[6]?.freeGamesTriggered3 || false;
     const freeGames4Triggered = data[6]?.freeGamesTriggered3 || false;
@@ -150,7 +161,7 @@ export const Machine: React.FC<MachineProps> = ({ width, height, x, y, balance, 
             
             />
             ))}
-            <WinningLine winData={wins} reelWidth={reelWidth} reelHeight={reelHeight} />
+            <WinningLine winData={wins} reelWidth={reelWidth} reelHeight={reelHeight} lineBet={linesBet} />
 
       </>
       <Sprite texture={Texture.from(TOP_BAR)} x={-485} y={-400} width={width} height={120} alpha={100} />
@@ -182,7 +193,7 @@ export const Machine: React.FC<MachineProps> = ({ width, height, x, y, balance, 
         />
 }
       
-      <WinAmountCounter x={x + reelWidth * 4} y={y / 2} winData={wins} duration={1000} width={width /15} height={height/30} bet={playerBet}  />
+      <WinAmountCounter x={x + reelWidth * 4} y={y / 2} winData={wins} duration={1000} width={width /15} height={height/30} bet={playerBet} linesBet={linesBet}  />
 
     </Container>
   );
