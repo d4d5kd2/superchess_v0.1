@@ -11,7 +11,9 @@ import LETTER_L from '../../assets/images/LETTER_L.png';
 import LETTER_I from '../../assets/images/LETTER_I.png';
 import LETTER_N from '../../assets/images/LETTER_N.png';
 import LETTER_S from '../../assets/images/LETTER_S.png';
-
+import LETTER_C from '../../assets/images/LETTER_C.png';
+import Letter_U from '../../assets/images/LETTER_U.png';
+import Letter_R from '../../assets/images/LETTER_R.png';
 
 import NUMBER_0 from '../../assets/images/NUM_0.png';
 import NUMBER_1 from '../../assets/images/NUM_1.png';
@@ -23,6 +25,7 @@ import NUMBER_6 from '../../assets/images/NUM_6.png';
 import NUMBER_7 from '../../assets/images/NUM_7.png';
 import NUMBER_8 from '../../assets/images/NUM_8.png';
 import NUMBER_9 from '../../assets/images/NUM_9.png';
+
 
 const numberTextures = [
   Texture.from(NUMBER_0),
@@ -59,6 +62,9 @@ const letterTextures = {
     I: Texture.from(LETTER_I),
     N: Texture.from(LETTER_N),
     S: Texture.from(LETTER_S),
+    C: Texture.from(LETTER_C),
+    U: Texture.from(Letter_U),
+    R: Texture.from(Letter_R),
 };
 
 
@@ -198,7 +204,20 @@ export const BetControl: React.FC<BetControlProps> = ({
                     />
 
                 </Container>
+
+                <Container
+                    x={width - 100}
+                    y={height - 200}
+                    scale={0.8}
+                >
+                    {renderLetterSprites('CURRENTBET')}
+                    {renderNumberSprites(linesBet * betPerLine)}
+
+                 
+
+
             </Container>
+        </Container>
         </>
     );
 };

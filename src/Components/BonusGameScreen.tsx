@@ -28,12 +28,12 @@ export const FreeGameComponent: React.FC<FreeGameComponentProps> = ({width, heig
             <>
             <Stage width={width} height={height}>
     
-                {/* <Sprite texture={Texture.from(wildBonus)} x={0} y={0} width={width} height={height}/> */}
+                <Sprite texture={Texture.from(wildBonus)} x={0} y={0} width={width} height={height}/>
     
                
-                    <Sprite texture={Texture.from(logo)} x={0 + logoWidth/2} y={0 - logoHeight} width={logoWidth} height={logoHeight}/>
+                    {/* <Sprite texture={Texture.from(logo)} x={0 + logoWidth/2} y={0 - logoHeight} width={logoWidth} height={logoHeight}/> */}
 
-                    <FreeSpinsMachine 
+                    {/* <FreeSpinsMachine 
                         x={width / 2 - containerWidth / 3}
                         y={height / 2}
                         width={width}
@@ -46,7 +46,7 @@ export const FreeGameComponent: React.FC<FreeGameComponentProps> = ({width, heig
                         switchToFreeSpins={() => {}}
                         wildSymbol="WP"
 
-                    />
+                    /> */}
                     {/* <Machine x={width/2 - containerHeight * 1.3 } y={height} width={containerWidth} height={containerHeight} balance={}/> */}
 
                 

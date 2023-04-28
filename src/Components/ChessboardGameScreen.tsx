@@ -49,7 +49,7 @@ export const ChessboardGameComponent: React.FC<ChessboardGameComponentProps> = (
             <Stage width={width} height={height}>
             <Sprite texture={Texture.from(startImage)} x={0} y={0} width={width} height={height} alpha={100} />
             
-                        <Chessboard width={800} height={800} onGridItemClick={onGridItemClick} x={-200} y={0} />
+                        {/* <Chessboard width={800} height={800} onGridItemClick={onGridItemClick} x={-200} y={0} /> */}
      
                     <Sprite texture={Texture.from(logo)} x={360+ logoWidth *2} y={100} width={logoWidth} height={logoHeight}/>
                     {/* <WinAmountCounter x={width/2} y={height/2} width={width} height={height} /> */}
